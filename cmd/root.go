@@ -11,10 +11,15 @@ var rootCmd = &cobra.Command{
 	Long:  "this is a hello world redis cmd",
 }
 
-func Execute(cmd redis.Cmdable) {
-	NewKeysStruct(cmd).CreateKeysCmd()
+func Execute(cmdAble redis.Cmdable) {
+	AddCmdUnderRoot(cmdAble)
 	err := rootCmd.Execute()
 	if err != nil {
 		return
 	}
+}
+
+func AddCmdUnderRoot(cmdAble redis.Cmdable) {
+	NewKeysStruct(cmdAble).CreateKeysCmd()
+	NewSetStruct(cmdAble).CreateSetCmd()
 }
