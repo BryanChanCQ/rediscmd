@@ -29,33 +29,37 @@ func (k SetStruct) CreateSetCmd() {
 		Use:   "set",
 		Short: "set key value",
 		Long:  "set key value",
-		Args:  cobra.RangeArgs(2, 3),
+		Args:  cobra.ExactArgs(2),
 		Run:   createSetFunc(k.cmd),
 	}
+	setCmd.Flags().StringP("expire", "e", "", "set key expire time example: 20s, 30m, 20h")
 	rootCmd.AddCommand(setCmd)
 }
 
 func createSetFunc(redisCmd redis.Cmdable) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
 		ctx := context.Background()
-		if len(args) == 3 {
-			redisCmd.Set(ctx, args[0], args[1], time.Duration(conv2Int64(args[2]))*chooseTime(args[2]))
-		} else {
-			redisCmd.Set(ctx, args[0], args[1], 0)
-		}
+		expireFlagValue := cmd.Flags().Lookup("expire").Value.String()
+		redisCmd.Set(ctx, args[0], args[1], time.Duration(conv2Int64(expireFlagValue))*chooseTime(expireFlagValue))
 	}
 }
 
 func conv2Int64(times string) int64 {
+	if len(times) == 0 {
+		return 0
+	}
 	times = times[0 : len(times)-1]
 	parseInt, err := strconv.ParseInt(times, 10, 64)
 	if err != nil {
-		panic("please input correct time")
+		return 0
 	}
 	return parseInt
 }
 
 func chooseTime(times string) time.Duration {
+	if len(times) == 0 {
+		return 0
+	}
 	times = times[len(times)-1:]
 	return timeMap[times]
 }
