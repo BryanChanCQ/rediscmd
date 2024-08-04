@@ -39,8 +39,8 @@ func createKeysFunc(redisCmd redis.Cmdable) func(cmd *cobra.Command, args []stri
 		for i := range result {
 			fmt.Printf("key:%s\n", result[i])
 		}
-		value := cmd.Flags().Lookup("delete").Value.String()
-		if value == "true" {
+		dFlag, _ := cmd.Flags().GetBool("delete")
+		if dFlag {
 			redisCmd.Del(ctx, result...)
 		}
 	}
