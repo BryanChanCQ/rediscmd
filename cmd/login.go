@@ -3,8 +3,9 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/spf13/cobra"
 )
 
 type redisLogin struct {
@@ -24,7 +25,7 @@ func CreateLoginCmd() {
 		Args:  cobra.NoArgs,
 		Run:   createLoginRunFunc(),
 	}
-	loginCmd.Flags().StringP("user", "u", "", "input your redis user")
+	loginCmd.Flags().StringP("user", "u", "default", "input your redis user")
 	loginCmd.Flags().StringP("password", "p", "", "input your redis password")
 	rootCmd.AddCommand(loginCmd)
 }
@@ -50,9 +51,12 @@ func createLoginRunFunc() func(cmd *cobra.Command, args []string) {
 			panic("json format error")
 		}
 		file, err := os.Create(filePath)
+
 		if err != nil {
-			panic("open file error")
+			panic(fmt.Sprintf("login file create err:%v", err))
 		}
+		defer file.Close()
+
 		_, err = file.Write(marshal)
 		if err != nil {
 			panic("write file error")
