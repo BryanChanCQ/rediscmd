@@ -3,14 +3,20 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"redisCmd/tools"
 	"time"
 
 	"github.com/redis/go-redis/v9"
 )
 
 func CreateRedisConnection() redis.Cmdable {
+	var redisOptions redisLogin
+	tools.FileUnmarshl(tools.InitFilePath(), tools.JSON, &redisOptions)
+
+	addr := redisOptions.Host + ":" + redisOptions.Port
 	client := redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
+		Addr:     addr,
+		Password: redisOptions.Password,
 	})
 
 	// 检查连接
