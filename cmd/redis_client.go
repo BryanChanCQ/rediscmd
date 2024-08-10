@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"redisCmd/tools"
 	"time"
@@ -9,10 +10,12 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-func CreateRedisConnection() redis.Cmdable {
+func CreateRedisConnection() (redis.Cmdable, error) {
 	var redisOptions redisLogin
-	tools.FileUnmarshl(tools.InitFilePath(), tools.JSON, &redisOptions)
-
+	marshlSucess := tools.FileUnmarshl(tools.InitFilePath(), tools.JSON, &redisOptions)
+	if !marshlSucess {
+		return nil, errors.New("please login first!!!!!\n")
+	}
 	addr := redisOptions.Host + ":" + redisOptions.Port
 	client := redis.NewClient(&redis.Options{
 		Addr:     addr,
@@ -29,6 +32,6 @@ func CreateRedisConnection() redis.Cmdable {
 
 	// fmt.Printf("Successfully connected to Redis. Response: %s\n", pingResp)
 
-	return client
+	return client, nil
 
 }

@@ -29,9 +29,10 @@ func CreateLoginCmd() {
 		Run:   createLoginRunFunc(),
 	}
 	loginCmd.Flags().StringP("user", "u", "default", "input your redis user")
-	loginCmd.Flags().StringP("password", "p", "", "input your redis password")
-	loginCmd.Flags().StringP("port", "port", "6379", "input your redis port")
-	loginCmd.Flags().StringP("host", "h", "127.0.0.1", "input your redis host")
+	loginCmd.Flags().StringP("password", "s", "", "input your redis password")
+	loginCmd.Flags().StringP("port", "p", "6379", "input your redis port")
+	// shorthand "h" conflict with help -h
+	loginCmd.Flags().StringP("host", "o", "127.0.0.1", "input your redis host")
 	rootCmd.AddCommand(loginCmd)
 }
 
