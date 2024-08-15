@@ -23,5 +23,6 @@ func AddCmdUnderRoot(cmdAble redis.Cmdable) {
 	NewKeysStruct(cmdAble).CreateKeysCmd()
 	NewSetStruct(cmdAble).CreateSetCmd()
 	NewGetStruct(cmdAble).CreateGetCmd()
+	NewSelectStruct(cmdAble).CreateSelectCmd()
 	CreateLoginCmd()
 }

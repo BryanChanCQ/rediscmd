@@ -14,7 +14,7 @@ type redisLogin struct {
 	Password string
 	Host     string
 	Port     string
-	Db       int8
+	Db       uint8
 }
 
 var filepath string
