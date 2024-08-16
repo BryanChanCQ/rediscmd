@@ -6,4 +6,5 @@ RUN ./build.sh linux
 FROM alpine
 WORKDIR /app
 COPY --from=builder /app/bin/redisCmd /app
+RUN cp /app/redisCmd /usr/local/bin/
 
