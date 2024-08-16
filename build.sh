@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 os=$1
 platform=$2
 echo $os
