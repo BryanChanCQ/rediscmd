@@ -6,6 +6,6 @@
  - ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/bryanchancq/rediscmd)
  - ![GitHub repo size](https://img.shields.io/github/repo-size/bryanchancq/rediscmd?label=cobra%7Credisclient)
 ## docker状态
- - ![Docker Pulls](https://img.shields.io/docker/pulls/bryanchancq/rediscmd?logo=docker)
+ - ![Docker Pulls](https://img.shields.io/docker/pulls/bryanchancq/rediscmd?logo=Docker&link=https%3A%2F%2Fhub.docker.com%2Frepository%2Fdocker%2Fbryanchancq%2Frediscmd%2Fgeneral) 
  - ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/bryanchancq/rediscmd/latest?arch=amd64&logo=Docker)
 
