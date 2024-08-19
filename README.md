@@ -10,17 +10,17 @@
  ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/bryanchancq/rediscmd/latest?arch=amd64&logo=Docker)
 
 ## contributors
-<p sytle="center">
- <img src="https://avatars.githubusercontent.com/u/52000718?v=4" width="30"></img>
-</p>
+<a href="https://github.com/zzm996-zzm">
+ <img src="https://avatars.githubusercontent.com/u/52000718?v=4" width="30" title="zzm"></img>
+ </a>
 
 ## 使用方式
-1. docker pull镜像的方式，请点击docker pull的tag跳转下载镜像
+1. docker pull镜像的方式，请点击[redisCmd镜像](https://hub.docker.com/repository/docker/bryanchancq/rediscmd/general)跳转下载镜像
    - 容器启动命令: `docker run --rm -it docker.io/bryanchancq/rediscmd:latest`
    -  进入容器直接使用redisCmd命令查看帮助
 2. 下载二进制文件的方式
    - windows:将二进制直接加入环境变量
-   - linux:将可执行文件放入`/user/local/bin`目录中，即可全局使用命令 
+   - linux:将可执行文件放入`/usr/local/bin`目录中，即可全局使用命令 
 
 ## 支持命令
 - **login**
