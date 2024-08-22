@@ -20,6 +20,7 @@ func CreateRedisConnection() (redis.Cmdable, error) {
 	client := redis.NewClient(&redis.Options{
 		Addr:     addr,
 		Password: redisOptions.Password,
+		DB:       int(redisOptions.Db),
 	})
 
 	// 检查连接
