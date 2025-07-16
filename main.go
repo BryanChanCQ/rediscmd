@@ -7,16 +7,24 @@ import (
 )
 
 func main() {
-	// 执行登录的时候不走连接
-	if len(os.Args) > 1 && os.Args[1] == "login" {
-		cmd.Execute(nil)
-	} else {
-		connection, err := cmd.CreateRedisConnection()
-		if err != nil {
-			fmt.Println(err.Error())
-			return
+	// 执行登录和时候不走连接
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "login", "show":
+			cmd.Execute(nil)
+		default:
+			useConnection()
 		}
-		cmd.Execute(connection)
+	} else {
+		cmd.Execute(nil)
 	}
+}
 
+func useConnection() {
+	connection, err := cmd.CreateRedisConnection()
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	cmd.Execute(connection)
 }
