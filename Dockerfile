@@ -2,7 +2,7 @@ FROM golang:1.23.0-alpine3.20 as builder
 WORKDIR /app
 COPY ./ /app
 ENV GOPROXY='http://goproxy.cn'
-RUN ./build.sh linux
+RUN go build -o bin/redisCmd main.go
 
 FROM alpine
 WORKDIR /app
