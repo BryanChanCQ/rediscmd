@@ -37,6 +37,17 @@
         -p, --port string       input your redis port (default "6379")
         -u, --user string       input your redis user (default "default")
   ```
+- **show**
+  ```bash
+    show redis database you can use swith database index to choose database
+
+    Usage:
+      redisCmd show [flags]
+
+    Flags:
+      -h, --help     help for show
+      -s, --switch   switch database
+  ```
 - **select**
   ```bash
     select db index
