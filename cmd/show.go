@@ -26,7 +26,6 @@ func createShowRunFunc() func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
 		var dbShowSlice []redisLogin
 		tools.FileUnmarshl(tools.DbSwitchFilePath(), tools.JSON, &dbShowSlice)
-		fmt.Println("please choose database index")
 		for index, dbShow := range dbShowSlice {
 			fmt.Printf("index:%d  host  %s  dataBaseName  %s\n", index, dbShow.Host, dbShow.DataBaseName)
 		}
