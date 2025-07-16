@@ -10,11 +10,14 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
+var (
+	ErrNotLogin = errors.New("please login first")
+)
 func CreateRedisConnection() (redis.Cmdable, error) {
 	var redisOptions redisLogin
 	marshlSucess := tools.FileUnmarshl(tools.InitFilePath(), tools.JSON, &redisOptions)
 	if !marshlSucess {
-		return nil, errors.New("please login first!!!!!\n")
+		return nil, ErrNotLogin
 	}
 	addr := redisOptions.Host + ":" + redisOptions.Port
 	client := redis.NewClient(&redis.Options{

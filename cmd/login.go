@@ -82,7 +82,7 @@ func writeLoginData2SwitchDB(login *redisLogin) {
 	filepath := tools.DbSwitchFilePath()
 	tools.FileUnmarshl(filepath, tools.JSON, &dbSwitch)
 	hasHost := false
-	for index, _ := range dbSwitch {
+	for index := range dbSwitch {
 		loginDb := dbSwitch[index]
 		if loginDb.Host == login.Host {
 			hasHost = true
