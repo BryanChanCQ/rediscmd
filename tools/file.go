@@ -6,9 +6,26 @@ import (
 	"os"
 )
 
+type FileType int8
+
 const (
-	JSON = "json"
+	JSONFile FileType = iota
+	TOMLFile
+	YAMLFile
 )
+
+func ToFileType(format int8) FileType {
+	switch format {
+	case 0:
+		return JSONFile
+	case 1:
+		return TOMLFile
+	case 2:
+		return YAMLFile
+	default:
+		return JSONFile
+	}
+}
 
 func InitFilePath() string {
 	dir, err := os.UserHomeDir()
@@ -30,7 +47,7 @@ func DbSwitchFilePath() string {
 
 // 将当前文件路径下的内容，反序列化成结构体
 // filepath 目录文件 format 目前只支持json
-func FileUnmarshl(filepath string, format string, resp any) bool {
+func FileUnmarshl(filepath string, fileType FileType, resp any) bool {
 	//TODO:判断resp是否是指针,如果resp 非指针类型则反序列化会失败
 	if !FileIsExists(filepath) {
 		return false
@@ -40,7 +57,7 @@ func FileUnmarshl(filepath string, format string, resp any) bool {
 		return false
 	}
 
-	if format == JSON {
+	if fileType == JSONFile {
 		err := json.Unmarshal(content, &resp)
 		if err != nil {
 			fmt.Printf("read login file err:%v\n", err)

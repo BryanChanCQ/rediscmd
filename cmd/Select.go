@@ -32,7 +32,7 @@ func (k *SelectStruct) CreateSelectCmd() {
 func createSelectFunc() func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
 		var redisOptions redisLogin
-		marshlSucess := tools.FileUnmarshl(tools.InitFilePath(), tools.JSON, &redisOptions)
+		marshlSucess := tools.FileUnmarshl(tools.InitFilePath(), tools.JSONFile, &redisOptions)
 		if !marshlSucess {
 			panic("file unmarshl fail")
 		}

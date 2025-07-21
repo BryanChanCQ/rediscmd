@@ -80,7 +80,7 @@ func WriteLoginData2File(login *redisLogin) {
 func writeLoginData2SwitchDB(login *redisLogin) {
 	var dbSwitch []redisLogin
 	filepath := tools.DbSwitchFilePath()
-	tools.FileUnmarshl(filepath, tools.JSON, &dbSwitch)
+	tools.FileUnmarshl(filepath, tools.JSONFile, &dbSwitch)
 	hasHost := false
 	for index := range dbSwitch {
 		loginDb := dbSwitch[index]
