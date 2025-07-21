@@ -21,7 +21,8 @@
 2. 下载二进制文件的方式
    - windows:将二进制直接加入环境变量
    - linux:将可执行文件放入`/usr/local/bin`目录中，即可全局使用命令 
-
+2. 推荐使用go安装(配置export GOPROXY=https://goproxy.cn)
+   - go install github.com/BryanChanCQ/rediscmd@v1.0.0(v1.0.0为项目tag)
 ## 支持命令
 - **login**
   ```bash
