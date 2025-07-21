@@ -1,4 +1,4 @@
-module redisCmd
+module github.com/BryanChanCQ/rediscmd
 
 go 1.22.2
 
