@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"redisCmd/tools"
 
+	"github.com/BryanChanCQ/rediscmd/tools"
 	"github.com/spf13/cobra"
 )
 

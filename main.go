@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"redisCmd/cmd"
+
+	"github.com/BryanChanCQ/rediscmd/cmd"
 )
 
 func main() {

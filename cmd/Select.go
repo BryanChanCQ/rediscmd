@@ -2,10 +2,11 @@ package cmd
 
 import (
 	"encoding/json"
+	"os"
+
+	"github.com/BryanChanCQ/rediscmd/tools"
 	"github.com/redis/go-redis/v9"
 	"github.com/spf13/cobra"
-	"os"
-	"redisCmd/tools"
 )
 
 type SelectStruct struct {

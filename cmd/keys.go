@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"context"
-	"redisCmd/tools"
 
+	"github.com/BryanChanCQ/rediscmd/tools"
 	"github.com/redis/go-redis/v9"
 	"github.com/spf13/cobra"
 )

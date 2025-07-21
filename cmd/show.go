@@ -4,9 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"redisCmd/tools"
 	"strconv"
 
+	"github.com/BryanChanCQ/rediscmd/tools"
 	"github.com/spf13/cobra"
 )
 
