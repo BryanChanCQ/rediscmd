@@ -1,4 +1,4 @@
 package tools
 const (
-	Timeout = 10
+	Timeout = 3
 )
