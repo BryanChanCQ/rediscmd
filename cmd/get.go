@@ -5,12 +5,9 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/BryanChanCQ/rediscmd/tools"
 	"github.com/redis/go-redis/v9"
 	"github.com/spf13/cobra"
-)
-
-const (
-	timeout = 10
 )
 
 type GetStruct struct {
@@ -36,7 +33,7 @@ func (k *GetStruct) CreateGetCmd() {
 
 func createGetFunc(redisCmd redis.Cmdable) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
-		ctx, cancel := context.WithTimeout(context.Background(), timeout*time.Second)
+		ctx, cancel := context.WithTimeout(context.Background(), tools.Timeout*time.Second)
 		defer cancel()
 		stringCmd := redisCmd.Get(ctx, args[0])
 		val := stringCmd.Val()

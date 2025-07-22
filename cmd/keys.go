@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"time"
 
 	"github.com/BryanChanCQ/rediscmd/tools"
 	"github.com/redis/go-redis/v9"
@@ -35,7 +36,8 @@ func (k keysStruct) CreateKeysCmd() {
 
 func createKeysFunc(redisCmd redis.Cmdable, keysStruct keysStruct) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
-		ctx := context.Background()
+		ctx, cancel := context.WithTimeout(context.Background(), tools.Timeout*time.Second)
+		defer cancel()
 		result, err := redisCmd.Keys(ctx, "*"+args[0]+"*").Result()
 		if err != nil {
 			panic(err)

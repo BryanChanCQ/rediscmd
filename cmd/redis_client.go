@@ -28,7 +28,7 @@ func CreateRedisConnection() (redis.Cmdable, error) {
 	})
 
 	// 检查连接
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), tools.Timeout*time.Second)
 	defer cancel()
 	_, err := client.Ping(ctx).Result()
 	if err != nil {

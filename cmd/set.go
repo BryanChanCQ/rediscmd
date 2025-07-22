@@ -2,10 +2,12 @@ package cmd
 
 import (
 	"context"
-	"github.com/redis/go-redis/v9"
-	"github.com/spf13/cobra"
 	"strconv"
 	"time"
+
+	"github.com/BryanChanCQ/rediscmd/tools"
+	"github.com/redis/go-redis/v9"
+	"github.com/spf13/cobra"
 )
 
 type SetStruct struct {
@@ -38,7 +40,8 @@ func (k SetStruct) CreateSetCmd() {
 
 func createSetFunc(redisCmd redis.Cmdable) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
-		ctx := context.Background()
+		ctx, cancel := context.WithTimeout(context.Background(), tools.Timeout*time.Second)
+		defer cancel()
 		expireFlagValue := cmd.Flags().Lookup("expire").Value.String()
 		redisCmd.Set(ctx, args[0], args[1], time.Duration(conv2Int64(expireFlagValue))*chooseTime(expireFlagValue))
 	}
