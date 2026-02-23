@@ -84,7 +84,7 @@ func writeLoginData2SwitchDB(login *redisLogin) {
 	hasHost := false
 	for index := range dbSwitch {
 		loginDb := dbSwitch[index]
-		if loginDb.Host == login.Host {
+		if loginDb.Host == login.Host && loginDb.Port == login.Port {
 			hasHost = true
 			break
 		}
